@@ -4,7 +4,8 @@ namespace Hard2Code\Service;
 
 use Hard2Code\Domain\ProductCartItem;
 
-interface ProductCartService {
+interface ProductCartService
+{
     /**
      * @param  ProductCartItem  $productCartItem
      *
