@@ -20,7 +20,7 @@
       "Hard2Code\\": "src/hrd2cd"
     },
     "files": [
-      "config/functions.php"
+      "src/functions.php"
     ]
   },
   "autoload-dev": {
