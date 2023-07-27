@@ -20,8 +20,6 @@
       "Hard2Code\\": "src/hrd2cd"
     },
     "files": [
-      "config/constants.php",
-      "config/events.php",
       "config/functions.php"
     ]
   },
