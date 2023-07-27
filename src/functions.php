@@ -27,7 +27,7 @@ function vardump(mixed $data, string $textColor = "#353535", string $bgColor = "
  * @return bool
  */
 function isHomePage(string $rootPath = "/"): bool {
-    return $_SERVER["REQUEST_URI"] == $rootPath;
+    return parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH) == $rootPath;
 }
 
 /**
