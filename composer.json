@@ -1,0 +1,47 @@
+{
+  "name": "hard2code/bitrix-utils",
+  "description": "A set of classes for more convenient work with the Bitrix API",
+  "minimum-stability": "stable",
+  "prefer-stable": true,
+  "license": "MIT",
+  "type": "library",
+  "require": {
+    "php": "^8.1",
+    "phpmailer/phpmailer": "^6.8.0"
+  },
+  "authors": [
+    {
+      "name": "Alexey Fishler",
+      "email": "amberdance@yandex.ru"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Hard2Code\\": "src/hrd2cd"
+    },
+    "files": [
+      "config/constants.php",
+      "config/events.php",
+      "config/functions.php"
+    ]
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Hard2Code\\Tests\\": "src/tests"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "10.2.2"
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true
+  },
+  "replace": {
+    "psr/log": "*",
+    "psr/container": "*",
+    "psr/http-client": "*",
+    "psr/http-message": "*"
+  }
+}
