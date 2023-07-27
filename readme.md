@@ -17,6 +17,8 @@ Install my-project with composer
 ```bash
 composer require hard2code/bitrix-utils
 ```
+
+**Для корректной работы библиотеке от вас требуется наличие интерфейса constant.php в директории `/php_interface/config/constant.php`**
     
 ## Usage/Examples
 
