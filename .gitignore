@@ -1,4 +1,4 @@
 /composer.lock
 /vendor
 /config/.phpunit.result.cache
-.idea
+/.idea/
