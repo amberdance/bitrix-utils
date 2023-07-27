@@ -3,32 +3,26 @@
 namespace Hard2Code\Tests\Util;
 
 use Hard2Code\Entity\Picture\ArrayPicture;
-use Hard2Code\Util\Images;
+use Hard2Code\Tests\Entities\EntityTestBase;
 use PHPUnit\Framework\TestCase;
 
-use function PHPUnit\Framework\assertEquals;
 
-class ImagesTest extends TestCase
+class ImagesTest extends EntityTestBase
 {
-
-    private static $imageIds = [
-        1938,
-        1939,
-        1940,
-        1941
-    ];
+    private static array $TEST_DATA;
 
 
     public function testGetPhotogallery()
     {
-        $images = Images::getPhotogallery(self::$imageIds);
-        assertEquals(count(self::$imageIds), count($images));
-
-        foreach ($images as $image) {
+        foreach (self::$TEST_DATA as $image) {
             self::assertNotNull($image);
             self::assertInstanceOf(ArrayPicture::class, $image);
-            self::assertFileExists($_SERVER["DOCUMENT_ROOT"].$image->getSource());
         }
+    }
+
+    protected function setUp(): void
+    {
+        self::$TEST_DATA = $this->includeResourceFile("photogallery_test_data.php");
     }
 
 }
