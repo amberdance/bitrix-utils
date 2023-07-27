@@ -2,6 +2,7 @@
   "name": "hard2code/bitrix-utils",
   "description": "A set of classes for more convenient work with the Bitrix API",
   "minimum-stability": "stable",
+  "version": "1.0.1",
   "prefer-stable": true,
   "license": "MIT",
   "type": "library",
