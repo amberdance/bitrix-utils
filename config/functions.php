@@ -21,10 +21,13 @@ function vardump(mixed $data, string $textColor = "#353535", string $bgColor = "
     echo "</pre></div>";
 }
 
-function isHomePage(): bool {
-    $url = parse_url($_SERVER["REQUEST_URI"])["path"];
-
-    return Constant::IS_DEVELOPMENT_MODE ? $url == Constant::DEVELOPMENT_SITE_DIR : "/" == $url;
+/**
+ * @param  string  $rootPath
+ *
+ * @return bool
+ */
+function isHomePage(string $rootPath = "/"): bool {
+    return $_SERVER["REQUEST_URI"] == $rootPath;
 }
 
 /**
