@@ -28,4 +28,15 @@ final class Formatters
         return number_format($number, 0, $decimalSeparator, $thousandsSeparator);
     }
 
+    /**
+     * @param  string  $format
+     * @param  int     $timeStamp
+     *
+     * @return string
+     */
+    public static function formatDateWithBitrixFormatter(string $format = "j F Y", int $timeStamp): string
+    {
+        return FormatDate($format, $timeStamp);
+    }
+
 }
