@@ -9,24 +9,27 @@ class ProductCartItem implements JsonSerializable
 {
     private int $productId;
     private string $sessionId;
-    private int $count;
+    private int $count = 1;
     private ?int $id = null;
 
 
     /**
-     * @param  int     $productId
-     * @param  string  $sessionId
-     * @param  int     $count
+     * @param  int       $productId
+     * @param  string    $sessionId
+     * @param  int|null  $count
      */
-    public function __construct(int $productId, string $sessionId, int $count)
+    public function __construct(int $productId, string $sessionId, ?int $count)
     {
-        if ($productId == 0) {
+        if ($productId <= 0) {
             throw new TypeError("Product id must be a positive integer");
         }
 
         $this->productId = $productId;
         $this->sessionId = $sessionId;
-        $this->count = $count;
+
+        if ($count !== null) {
+            $this->count = $count;
+        }
     }
 
     /**
