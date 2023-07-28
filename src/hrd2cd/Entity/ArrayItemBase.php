@@ -74,7 +74,7 @@ abstract class ArrayItemBase implements ArrayElement
     /**
      * @inheritDoc
      */
-    public function getActiveToDate(): string
+    public function getActiveToDate(): ?string
     {
         return $this->getByKey("active_to");
     }

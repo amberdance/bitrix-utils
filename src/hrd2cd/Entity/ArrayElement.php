@@ -64,9 +64,9 @@ interface ArrayElement
     /**
      * Returns ACTIVE_TO property
      *
-     * @return string
+     * @return string|null
      */
-    public function getActiveToDate(): string;
+    public function getActiveToDate(): ?string;
 
     /**
      * Returns the id for the element that allows bitrix to delete or edit it
