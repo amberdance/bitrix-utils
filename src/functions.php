@@ -7,7 +7,8 @@
  *
  * @return void
  */
-function vardump(mixed $data, string $textColor = "#353535", string $bgColor = "#f8f8f8"): void {
+function vardump(mixed $data, string $textColor = "#353535", string $bgColor = "#f8f8f8"): void
+{
     echo "<div class='container'>
     <pre style='background-color: $bgColor;
     color: $textColor;
@@ -26,7 +27,8 @@ function vardump(mixed $data, string $textColor = "#353535", string $bgColor = "
  *
  * @return bool
  */
-function isHomePage(string $rootPath = "/"): bool {
+function isHomePage(string $rootPath = "/"): bool
+{
     return parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH) == $rootPath;
 }
 
@@ -35,7 +37,8 @@ function isHomePage(string $rootPath = "/"): bool {
  *
  * @return string
  */
-function getSiteName(string $siteId = 's1'): string {
+function getSiteName(string $siteId = 's1'): string
+{
     return CSite::GetByID($siteId)->arResult[0]['SITE_NAME'] ?? Constant::SITE_NAME;
 }
 
@@ -47,7 +50,8 @@ function getSiteName(string $siteId = 's1'): string {
  *
  * @return void
  */
-function includeTemplateFile(string $path): void {
+function includeTemplateFile(string $path): void
+{
     $path = $path[0] == "/" ? substr($path, 1) : $path;
     $path = $_SERVER['DOCUMENT_ROOT'].SITE_TEMPLATE_PATH."/includes/".$path;
     $hasExtension = isset(pathinfo($path)["extension"]);
@@ -67,7 +71,8 @@ function includeTemplateFile(string $path): void {
  *
  * @return void
  */
-function includeTemplateFiles(string ...$paths): void {
+function includeTemplateFiles(string ...$paths): void
+{
     foreach ($paths as $path) {
         includeTemplateFile($path);
     }
@@ -81,7 +86,8 @@ function includeTemplateFiles(string ...$paths): void {
  *
  * @return void
  */
-function includeSharedTemplateFile(string $path): void {
+function includeSharedTemplateFile(string $path): void
+{
     $prefix = isHomePage() ? "" : $_SERVER["DOCUMENT_ROOT"].SITE_DIR;
     $file = $prefix."/includes/".$path;
 
@@ -91,7 +97,8 @@ function includeSharedTemplateFile(string $path): void {
 /**
  * @return void
  */
-function includeAdminPanelIfAuthenticated(): void {
+function includeAdminPanelIfAuthenticated(): void
+{
     global $APPLICATION, $USER;
 
     if ($USER->isAdmin()) {
@@ -104,7 +111,8 @@ function includeAdminPanelIfAuthenticated(): void {
 /**
  * @return void
  */
-function protectBitrixPrologInclude(): void {
+function protectBitrixPrologInclude(): void
+{
     if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
         die();
     }
@@ -115,7 +123,8 @@ function protectBitrixPrologInclude(): void {
  *
  * @return string
  */
-function getSiteDir(): string {
+function getSiteDir(): string
+{
     return Constant::IS_DEVELOPMENT_MODE ? Constant::DEVELOPMENT_SITE_DIR : SITE_DIR;
 }
 
@@ -124,7 +133,8 @@ function getSiteDir(): string {
  *
  * @return array
  */
-function listDirectory(string $dir): array {
+function listDirectory(string $dir): array
+{
     $list = array_diff(scandir($dir), ['..', '.']);
 
     return array_values($list);
@@ -134,6 +144,7 @@ function listDirectory(string $dir): array {
 /**
  * @return bool
  */
-function issetHttpReferer(): bool {
+function issetHttpReferer(): bool
+{
     return $_SERVER["HTTP_REFERER"] !== null;
 }

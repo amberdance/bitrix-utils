@@ -4,9 +4,11 @@ namespace Hard2Code\Tests;
 
 use PHPUnit\Framework\TestCase;
 
-class FunctionsTest extends TestCase {
+class FunctionsTest extends TestCase
+{
 
-    public function testIsHome() {
+    public function testIsHome()
+    {
         $_SERVER["REQUEST_URI"] = "/";
 
         self::assertTrue(isHomePage());
