@@ -4,6 +4,7 @@ namespace Hard2Code\Tests\Entities;
 
 
 use Hard2Code\Entity\Handler\EntityHandler;
+use Hard2Code\Entity\Item\ArrayItem;
 use Hard2Code\Entity\Link\ArrayLink;
 use Hard2Code\Entity\Section\ArraySection;
 use Hard2Code\Util\Entities;
@@ -11,7 +12,7 @@ use Hard2Code\Util\Entities;
 class EntityHandlerTest extends EntityTestBase
 {
 
-    private static array $TEST_DATA;
+    private static array $TEST_ITEMS_DATA;
     private static array $TEST_LINKS_DATA;
     private static array $TEST_SECTIONS_DATA;
     private static EntityHandler $HANDLER;
@@ -41,18 +42,13 @@ class EntityHandlerTest extends EntityTestBase
         self::assertTrue(Entities::getHandler($emptyData)->isEmpty());
     }
 
-    public function testGetItems()
-    {
-        self::assertEquals(self::$TEST_DATA["ITEMS"], self::$HANDLER->getItems());
-    }
-
 
     public function testNextItem()
     {
         $i = 0;
 
         while ($item = self::$HANDLER->nextItem()) {
-            self::assertEquals(self::$TEST_DATA["ITEMS"][$i], $item->getRawArrayResult());
+            self::assertEquals(self::$TEST_ITEMS_DATA["ITEMS"][$i], $item->getRawArrayResult());
             $i++;
         }
     }
@@ -81,7 +77,7 @@ class EntityHandlerTest extends EntityTestBase
 
     public function testSize()
     {
-        self::assertEquals(count(self::$TEST_DATA["ITEMS"]), self::$HANDLER->size());
+        self::assertEquals(count(self::$TEST_ITEMS_DATA["ITEMS"]), self::$HANDLER->size());
     }
 
     public function testGet()
@@ -95,12 +91,12 @@ class EntityHandlerTest extends EntityTestBase
 
     public function testGetArrayResult()
     {
-        self::assertEquals(self::$TEST_DATA, self::$HANDLER->getArrayResult());
+        self::assertEquals(self::$TEST_ITEMS_DATA, self::$HANDLER->getArrayResult());
     }
 
     public function testGetArchiveLink()
     {
-        self::assertEquals(self::$TEST_DATA["LIST_PAGE_URL"], self::$HANDLER->getArchiveLink());
+        self::assertEquals(self::$TEST_ITEMS_DATA["LIST_PAGE_URL"], self::$HANDLER->getArchiveLink());
     }
 
     public function testGetLinks()
@@ -129,12 +125,22 @@ class EntityHandlerTest extends EntityTestBase
         }
     }
 
+    public function testGetItems()
+    {
+        $items = Entities::getItems(self::$TEST_ITEMS_DATA);
+
+        foreach ($items as $i => $item) {
+            self::assertInstanceOf(ArrayItem::class, $item);
+            self::assertEquals(self::$TEST_ITEMS_DATA["ITEMS"][$i], $item->getRawArrayResult());
+        }
+    }
+
     protected function setUp(): void
     {
-        self::$TEST_DATA = $this->includeResourceFile("array_result_test_data.php");
+        self::$TEST_ITEMS_DATA = $this->includeResourceFile("array_result_test_data.php");
         self::$TEST_LINKS_DATA = $this->includeResourceFile("links_test_data.php");
         self::$TEST_SECTIONS_DATA = $this->includeResourceFile("sections_test_data.php");
-        self::$HANDLER = Entities::getHandler(self::$TEST_DATA);
+        self::$HANDLER = Entities::getHandler(self::$TEST_ITEMS_DATA);
     }
 
 }
