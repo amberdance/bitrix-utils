@@ -43,9 +43,9 @@ interface ArrayElement
     /**
      * Returns ACTIVE_FROM property
      *
-     * @return string
+     * @return string|null
      */
-    public function getActiveFromDate(): string;
+    public function getActiveFromDate(): ?string;
 
     /**
      * Returns DATE_CREATE property
