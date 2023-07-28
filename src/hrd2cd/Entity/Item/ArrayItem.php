@@ -102,5 +102,9 @@ interface ArrayItem
      */
     public function hasDetailText(): bool;
 
+    /**
+     * @return array
+     */
+    public function getTags(): array;
 
 }

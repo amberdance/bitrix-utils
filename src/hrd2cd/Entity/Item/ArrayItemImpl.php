@@ -147,4 +147,17 @@ class ArrayItemImpl extends ArrayItemBase implements ArrayItem
         return boolval($this->getByKey("preview_text"));
     }
 
+    /**
+     * @inheritDoc
+     */
+    public function getTags(): array
+    {
+        $tags = $this->getByKey("tags");
+
+        if ($tags == null || $tags == "") {
+            return [];
+        }
+
+        return explode(",", $tags);
+    }
 }
