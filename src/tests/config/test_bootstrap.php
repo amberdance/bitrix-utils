@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__."/../vendor/autoload.php";
+require __DIR__."/../../../vendor/autoload.php";
 
 $_SERVER["DOCUMENT_ROOT"] = dirname(__DIR__, 3);
 
