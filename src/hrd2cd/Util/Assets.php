@@ -74,8 +74,13 @@ final class Assets
         foreach ($paths as $path) {
             try {
                 foreach (Paths::listDirectory(self::JS_PREFIX.$path) as $js) {
-                    $js = SITE_TEMPLATE_PATH.self::JS_PREFIX.$path."/".$js;
-                    $asset->addJs($js);
+                    $__js = SITE_TEMPLATE_PATH.self::JS_PREFIX.$path."/".$js;
+
+                    if (is_dir($_SERVER["DOCUMENT_ROOT"].$__js)) {
+                        self::includeJsRecursively($path."/$js");
+                    }
+
+                    $asset->addJs($__js);
                 }
             } catch (TypeError) {
                 continue;
@@ -97,8 +102,13 @@ final class Assets
         foreach ($paths as $path) {
             try {
                 foreach (Paths::listDirectory(self::CSS_PREFIX.$path) as $css) {
-                    $css = SITE_TEMPLATE_PATH.self::CSS_PREFIX.$path."/".$css;
-                    $asset->addCss($css);
+                    $__css = SITE_TEMPLATE_PATH.self::CSS_PREFIX.$path."/".$css;
+
+                    if (is_dir($_SERVER["DOCUMENT_ROOT"].$__css)) {
+                        self::includeCssRecursively($path."/$css");
+                    }
+
+                    $asset->addCss($__css);
                 }
             } catch (TypeError) {
                 continue;
