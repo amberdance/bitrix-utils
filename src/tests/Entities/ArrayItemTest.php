@@ -100,6 +100,11 @@ class ArrayItemTest extends EntityTestBase
         assertEquals(self::$TEST_DATA["DETAIL_PICTURE"]["ID"], self::$ARRAY_ITEM->getDetailPicture()->getId());
     }
 
+    public function testGetTags()
+    {
+        assertEquals(explode(",", self::$TEST_DATA["TAGS"]), self::$ARRAY_ITEM->getTags());
+    }
+
 
     protected function setUp(): void
     {

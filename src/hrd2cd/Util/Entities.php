@@ -6,6 +6,7 @@ namespace Hard2Code\Util;
 use CBitrixComponentTemplate;
 use Hard2Code\Entity\Handler\EntityHandler;
 use Hard2Code\Entity\Handler\EntityHandlerImpl;
+use Hard2Code\Entity\Item\ArrayItem;
 use Hard2Code\Entity\Link\ArrayLink;
 use Hard2Code\Entity\Section\ArraySection;
 
@@ -19,17 +20,26 @@ final class Entities
     private static ?EntityHandler $instance = null;
 
     /**
-     * Returns raw $arResult["ITEMS"] for classic foreach handling items
      *
-     * @param  array  $arResult
+     * @param  array                          $arResult
+     * @param  CBitrixComponentTemplate|null  $context
      *
-     * @return array
+     * @return ArrayItem[]
      */
-    public static function getItems(array $arResult): array
+    public static function getItems(array $arResult, ?CBitrixComponentTemplate $context = null): array
     {
-        self::getHandler($arResult);
+        $handler = self::getHandler($arResult);
+        $items = [];
 
-        return self::$instance->getItems();
+        if ($context != null) {
+            $handler->setComponentContext($context);
+        }
+
+        while ($item = $handler->nextItem()) {
+            $items[] = $item;
+        }
+
+        return $items;
     }
 
     /**

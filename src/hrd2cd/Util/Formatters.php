@@ -5,6 +5,8 @@ namespace Hard2Code\Util;
 final class Formatters
 {
 
+    public const DEFAULT_DATE_FORMAT = "j F Y";
+
     /**
      * @param  float  $number
      *
@@ -17,7 +19,7 @@ final class Formatters
 
 
     /**
-     * @param  float   $number
+     * @param  float  $number
      * @param  string  $decimalSeparator
      * @param  string  $thousandsSeparator
      *
@@ -26,6 +28,19 @@ final class Formatters
     public static function formatNumber(float $number, string $decimalSeparator, string $thousandsSeparator): string
     {
         return number_format($number, 0, $decimalSeparator, $thousandsSeparator);
+    }
+
+    /**
+     * @param  string  $format
+     * @param  int     $timeStamp
+     *
+     * @return string
+     */
+    public static function formatDateWithBitrixFormatter(
+        int $timeStamp,
+        string $format = self::DEFAULT_DATE_FORMAT
+    ): string {
+        return FormatDate($format, $timeStamp);
     }
 
 }
