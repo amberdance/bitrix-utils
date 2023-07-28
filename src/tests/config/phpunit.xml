@@ -4,5 +4,6 @@
         processIsolation="true"
         backupGlobals="false"
         stopOnError="true"
-        bootstrap="test_bootstrap.php">
+        bootstrap="test_bootstrap.php"
+        cacheResult="false">
 </phpunit>
