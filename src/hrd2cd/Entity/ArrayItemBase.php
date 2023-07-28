@@ -52,7 +52,7 @@ abstract class ArrayItemBase implements ArrayElement
      */
     public function getActiveFromDate(): string
     {
-        return $this->getByKey("active_from");
+        return $this->getByKey("date_active_from") ?? $this->getByKey("active_from");
     }
 
     /**
@@ -76,7 +76,7 @@ abstract class ArrayItemBase implements ArrayElement
      */
     public function getActiveToDate(): ?string
     {
-        return $this->getByKey("active_to");
+        return $this->getByKey("date_active_to") ?? $this->getByKey("active_to");
     }
 
     /**
