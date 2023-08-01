@@ -41,6 +41,13 @@ interface ArrayElement
     public function getRawArrayResult(): array;
 
     /**
+     * Retrieve first available date value
+     *
+     * @return string
+     */
+    public function getDate(): string;
+
+    /**
      * Returns ACTIVE_FROM property
      *
      * @return string|null
