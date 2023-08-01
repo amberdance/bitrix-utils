@@ -34,4 +34,16 @@ final class Iblocks
         return $iblocks;
     }
 
+    /**
+     * @param  int  $id
+     *
+     * @return string|null
+     */
+    public static function getName(int $id): ?string
+    {
+        global $DB;
+
+        return $DB->Query("select NAME from b_iblock where ID=$id")->Fetch()["NAME"];
+    }
+
 }
