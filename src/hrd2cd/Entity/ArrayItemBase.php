@@ -79,10 +79,9 @@ abstract class ArrayItemBase implements ArrayElement
         return $this->getByKey("date_active_to") ?? $this->getByKey("active_to");
     }
 
+
     /**
-     * Retrieve first available date value
-     *
-     * @return string
+     * @inheritDoc
      */
     public function getDate(): string
     {
