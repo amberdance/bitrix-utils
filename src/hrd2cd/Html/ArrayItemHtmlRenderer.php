@@ -42,7 +42,7 @@ final class ArrayItemHtmlRenderer implements HtmlRenderer
         int $width = Images::DEFAULT_WIDTH,
         int $height = Images::DEFAULT_HEIGHT,
         bool $isProportional = true
-    ): ArrayItemHtmlRenderer {
+    ): HtmlRenderer {
         $imageMeta = $this->getImageMeta($width, $height, $isProportional);
 
         if (!$imageMeta["SRC"]) {
@@ -66,7 +66,7 @@ final class ArrayItemHtmlRenderer implements HtmlRenderer
         int $width = Images::DEFAULT_WIDTH,
         int $height = Images::DEFAULT_HEIGHT,
         bool $isProportional = true
-    ): ArrayItemHtmlRenderer {
+    ): HtmlRenderer {
         $imageMeta = $this->getImageMeta($width, $height, $isProportional);
 
         if (!$imageMeta["SRC"]) {
@@ -93,7 +93,7 @@ final class ArrayItemHtmlRenderer implements HtmlRenderer
         int $width = Images::DEFAULT_WIDTH,
         int $height = Images::DEFAULT_HEIGHT,
         bool $isProportional = true
-    ): ArrayItemHtmlRenderer {
+    ): HtmlRenderer {
         $imageMeta = $this->getImageMeta($width, $height, $isProportional);
 
         if (!$imageMeta["SRC"]) {
@@ -112,7 +112,7 @@ final class ArrayItemHtmlRenderer implements HtmlRenderer
      */
     public function showDetailLinkUrl(
         ?string $className = self::DEFAULT_LINK_CLASSNAME
-    ): ArrayItemHtmlRenderer {
+    ): HtmlRenderer {
         $element = $this->getCurrentElement();
         $link = $element->getDetailPageUrl();
         $name = $element->getName();
@@ -128,7 +128,7 @@ final class ArrayItemHtmlRenderer implements HtmlRenderer
      */
     public function showPostedDateAsString(
         ?string $className = self::DEFAULT_POSTED_DATE_CLASSNAME
-    ): ArrayItemHtmlRenderer {
+    ): HtmlRenderer {
         $date = $this->parseDateTime();
         $formattedDate = $date["DD"]." ".ToLower(GetMessage("MONTH_".intval($date["MM"])."_S"))." ".$date["YYYY"];
 
@@ -142,7 +142,7 @@ final class ArrayItemHtmlRenderer implements HtmlRenderer
      */
     public function showPostedDateAsDigits(
         ?string $className = self::DEFAULT_POSTED_DATE_CLASSNAME
-    ): ArrayItemHtmlRenderer {
+    ): HtmlRenderer {
         $date = $this->parseDateTime();
         $formattedDate = "{$date["DD"]}.{$date['MM']}.{$date['YYYY']} г.";
 
@@ -157,7 +157,7 @@ final class ArrayItemHtmlRenderer implements HtmlRenderer
     public function showPreviewText(
         ?string $className = self::DEFAULT_PREVIEW_TEXT_CLASSNAME,
         int $truncateLength = 0
-    ): ArrayItemHtmlRenderer {
+    ): HtmlRenderer {
         echo $this->processShowPreviewText($className, $truncateLength, false);
 
         return $this;
@@ -169,8 +169,21 @@ final class ArrayItemHtmlRenderer implements HtmlRenderer
     public function showRawPreviewText(
         ?string $className = self::DEFAULT_PREVIEW_TEXT_CLASSNAME,
         int $truncateLength = 0
-    ): ArrayItemHtmlRenderer {
+    ): HtmlRenderer {
         echo $this->processShowPreviewText($className, $truncateLength, true);
+
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function showTitleWithPreviewText(string $className = self::DEFAULT_TITLE_CLASSNAME): HtmlRenderer
+    {
+        $element = $this->getCurrentElement();
+        $content = $element->getName().strip_tags($element->getPreviewText());
+
+        echo "<div class='$className'>$content</div>";
 
         return $this;
     }
@@ -233,5 +246,6 @@ final class ArrayItemHtmlRenderer implements HtmlRenderer
 
         return "<div class='$className'>$previewText</div>";
     }
+
 
 }

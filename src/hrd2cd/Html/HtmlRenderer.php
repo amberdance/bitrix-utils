@@ -7,14 +7,11 @@ use Hard2Code\Util\Images;
 interface HtmlRenderer
 {
     public const DEFAULT_WRAPPER_CLASSNAME = "image_wrapper";
-
     public const DEFAULT_IMAGE_CLASSNAME = "image";
-
     public const DEFAULT_PREVIEW_TEXT_CLASSNAME = "announcement";
-
     public const DEFAULT_LINK_CLASSNAME = "link";
-
     public const DEFAULT_POSTED_DATE_CLASSNAME = "posted_date";
+    public const DEFAULT_TITLE_CLASSNAME = "title";
 
     /**
      * Renders preview text with div with user html content as it is
@@ -121,4 +118,11 @@ interface HtmlRenderer
         bool $isProportional = true
     ): HtmlRenderer;
 
+
+    /**
+     * @param  string  $className
+     *
+     * @return HtmlRenderer
+     */
+    public function showTitleWithPreviewText(string $className = self::DEFAULT_TITLE_CLASSNAME): HtmlRenderer;
 }
