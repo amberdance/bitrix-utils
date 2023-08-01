@@ -125,4 +125,11 @@ interface HtmlRenderer
      * @return HtmlRenderer
      */
     public function showTitleWithPreviewText(string $className = self::DEFAULT_TITLE_CLASSNAME): HtmlRenderer;
+
+    /**
+     * @param  string  $className
+     *
+     * @return HtmlRenderer
+     */
+    public function showTitle(string $className = self::DEFAULT_TITLE_CLASSNAME): HtmlRenderer;
 }

@@ -178,6 +178,19 @@ final class ArrayItemHtmlRenderer implements HtmlRenderer
     /**
      * @inheritDoc
      */
+    public function showTitle(string $className = self::DEFAULT_TITLE_CLASSNAME): HtmlRenderer
+    {
+        $element = $this->getCurrentElement();
+        $content = $element->getName();
+
+        echo "<div class='$className'>$content</div>";
+
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function showTitleWithPreviewText(string $className = self::DEFAULT_TITLE_CLASSNAME): HtmlRenderer
     {
         $element = $this->getCurrentElement();
