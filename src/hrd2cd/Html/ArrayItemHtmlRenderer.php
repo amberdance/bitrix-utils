@@ -144,7 +144,7 @@ final class ArrayItemHtmlRenderer implements HtmlRenderer
         ?string $className = self::DEFAULT_POSTED_DATE_CLASSNAME
     ): HtmlRenderer {
         $date = $this->parseDateTime();
-        $formattedDate = "{$date["DD"]}.{$date['MM']}.{$date['YYYY']} г.";
+        $formattedDate = "{$date["DD"]}.{$date['MM']}.{$date['YYYY']}";
 
         echo "<div class='$className'><span>$formattedDate</span><i class='far fa-calendar-alt'></i></div>";
 
