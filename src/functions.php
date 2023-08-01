@@ -142,9 +142,11 @@ function listDirectory(string $dir): array
 
 
 /**
- * @return bool
+ * @param  string|int|null  $fileId
+ *
+ * @return string|null
  */
-function issetHttpReferer(): bool
+function getFilePath(mixed $fileId): ?string
 {
-    return $_SERVER["HTTP_REFERER"] !== null;
+    return \CFile::getPath((int) $fileId);
 }
