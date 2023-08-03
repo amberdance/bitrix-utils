@@ -22,6 +22,7 @@ class ArrayPictureTest extends EntityTestBase
     public function testGetSource()
     {
         assertEquals(self::$TEST_DATA["SRC"], self::$ARRAY_PICTURE->getSource());
+        assertEquals(self::$TEST_DATA["SRC"], self::$ARRAY_PICTURE->getLink());
     }
 
     public function testGetTitle()

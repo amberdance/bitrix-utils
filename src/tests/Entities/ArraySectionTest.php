@@ -56,6 +56,7 @@ class ArraySectionTest extends EntityTestBase
     public function testGetSectionPageUrl()
     {
         assertEquals(self::$TEST_DATA["SECTION_PAGE_URL"], self::$ARRAY_SECTION->getSectionPageUrl());
+        assertEquals(self::$TEST_DATA["SECTION_PAGE_URL"], self::$ARRAY_SECTION->getLink());
     }
 
 

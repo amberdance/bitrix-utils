@@ -28,6 +28,13 @@ interface ArrayElement
     public function getValue(string $value): mixed;
 
     /**
+     * Returns link to detail page/section page/outer resource
+     *
+     * @return string
+     */
+    public function getLink(): string;
+
+    /**
      *
      * @return string
      */

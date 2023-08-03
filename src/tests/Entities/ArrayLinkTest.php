@@ -24,6 +24,7 @@ class ArrayLinkTest extends EntityTestBase
     public function testGetSource()
     {
         assertEquals(self::$TEST_DATA["LINK"], self::$ARRAY_LINK->getSource());
+        assertEquals(self::$TEST_DATA["LINK"], self::$ARRAY_LINK->getLink());
     }
 
     public function testIsSelected()
