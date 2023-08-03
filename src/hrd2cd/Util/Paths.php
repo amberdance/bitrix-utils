@@ -25,13 +25,13 @@ final class Paths
     }
 
     /**
-     * @param  string  $path  relative path to directory in template folder
+     * @param  string  $path  relative path to directory
      *
      * @return array
      */
     public static function listDirectory(string $path): array
     {
-        return listDirectory($_SERVER["DOCUMENT_ROOT"].SITE_TEMPLATE_PATH.$path);
+        return listDirectory($_SERVER["DOCUMENT_ROOT"]."/".$path);
     }
 
     /**
