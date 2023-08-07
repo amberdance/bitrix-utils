@@ -58,4 +58,16 @@ final class Iblocks
         return $DB->Query("select count(ID) as counter from b_iblock_section where IBLOCK_ID=".$iblockId)->Fetch()["counter"] ?? -1;
     }
 
+    /**
+     * @param  int  $parentSectionId
+     *
+     * @return int
+     */
+    public static function getChildrenSectionsCount(int $parentSectionId): int
+    {
+        global $DB;
+
+        return $DB->Query("select count(ID) as counter from b_iblock_section where IBLOCK_SECTION_ID=".$parentSectionId)->Fetch()["counter"] ?? -1;
+    }
+
 }
