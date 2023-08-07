@@ -59,7 +59,7 @@ interface HtmlRenderer
      *
      * @return HtmlRenderer
      * @deprecated 1.0.2
-     * @see        HtmlRenderer:showPostedDate
+     * @see        {@link HtmlRenderer::showPostedDate()}
      */
     public function showPostedDateAsDigits(?string $className = HtmlRenderer::DEFAULT_POSTED_DATE_CLASSNAME
     ): HtmlRenderer;
@@ -71,8 +71,8 @@ interface HtmlRenderer
      * @param  string|null  $className
      *
      * @return HtmlRenderer
-     * @see        HtmlRenderer:showPostedDate
      * @deprecated 1.0.2
+     * @see        {@link HtmlRenderer::showPostedDate()}
      */
     public function showPostedDateAsString(
         ?string $className = HtmlRenderer::DEFAULT_POSTED_DATE_CLASSNAME
