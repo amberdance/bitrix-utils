@@ -42,11 +42,11 @@ class ArrayItemImpl extends ArrayItemBase implements ArrayItem
      *
      * @inheritDoc
      */
-    public function getPreviewText(bool $isRawHtml = false): ?string
+    public function getPreviewText(bool $stripTags = false): ?string
     {
         $key = "preview_text";
 
-        if ($isRawHtml) {
+        if ($stripTags) {
             $key = "~".$key;
         }
 
@@ -57,11 +57,11 @@ class ArrayItemImpl extends ArrayItemBase implements ArrayItem
      *
      * @inheritDoc
      */
-    public function getDetailText(bool $isRawHtml = false): ?string
+    public function getDetailText(bool $stripTags = false): ?string
     {
         $key = "detail_text";
 
-        if ($isRawHtml) {
+        if ($stripTags) {
             $key = "~".$key;
         }
 

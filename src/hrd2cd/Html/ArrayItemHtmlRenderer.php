@@ -260,17 +260,17 @@ final class ArrayItemHtmlRenderer implements HtmlRenderer
     /**
      * @param  string  $className
      * @param  int     $truncateLength
-     * @param  bool    $isRawHtml
+     * @param  bool    $stripTags
      *
      * @return string
      */
     private function processShowPreviewText(
         int $truncateLength,
-        bool $isRawHtml,
+        bool $stripTags,
         string $className = self::DEFAULT_PREVIEW_TEXT_CLASSNAME
     ): string {
         $element = $this->getCurrentElement();
-        $previewText = $isRawHtml ? trim(strip_tags($element->getPreviewText())) : $element->getPreviewText();
+        $previewText = $stripTags ? trim(strip_tags($element->getPreviewText())) : $element->getPreviewText();
 
         if ($truncateLength > 0) {
             $previewText = TruncateText(HTMLToTxt($previewText), $truncateLength);
