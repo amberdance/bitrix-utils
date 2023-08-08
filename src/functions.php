@@ -88,11 +88,32 @@ function includeTemplateFiles(string ...$paths): void
  */
 function includeSharedTemplateFile(string $path): void
 {
-    $prefix = isHomePage() ? "" : $_SERVER["DOCUMENT_ROOT"].SITE_DIR;
+    $prefix = $_SERVER["DOCUMENT_ROOT"].SITE_DIR;
     $file = $prefix."/includes/".$path;
+    $hasExtension = isset(pathinfo($file)["extension"]);
+    $fileSuffix = $hasExtension ? "" : ".php";
 
-    require_once $file;
+    // When path is root directory name
+    if (is_dir($file)) {
+        require_once $file."/index".$fileSuffix;
+    } // When path is name of include file
+    else {
+        require_once $file.$fileSuffix;
+    }
 }
+
+/**
+ * @param  string  ...$paths
+ *
+ * @return void
+ */
+function includeSharedTemplateFiles(string ...$paths): void
+{
+    foreach ($paths as $path) {
+        includeSharedTemplateFile($path);
+    }
+}
+
 
 /**
  * @return void
