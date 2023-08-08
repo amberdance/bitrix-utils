@@ -258,19 +258,21 @@ final class ArrayItemHtmlRenderer implements HtmlRenderer
     }
 
     /**
-     * @param  string  $className
-     * @param  int     $truncateLength
-     * @param  bool    $stripTags
+     * @param  int          $truncateLength
+     * @param  bool         $stripTags
+     *
+     * @param  string|null  $className
      *
      * @return string
      */
     private function processShowPreviewText(
         int $truncateLength,
         bool $stripTags,
-        string $className = self::DEFAULT_PREVIEW_TEXT_CLASSNAME
+        ?string $className
     ): string {
         $element = $this->getCurrentElement();
         $previewText = $stripTags ? trim(strip_tags($element->getPreviewText())) : $element->getPreviewText();
+        $className = $className ?? self::DEFAULT_PREVIEW_TEXT_CLASSNAME;
 
         if ($truncateLength > 0) {
             $previewText = TruncateText(HTMLToTxt($previewText), $truncateLength);
@@ -278,6 +280,5 @@ final class ArrayItemHtmlRenderer implements HtmlRenderer
 
         return "<div class='$className'>$previewText</div>";
     }
-
 
 }
