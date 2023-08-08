@@ -35,6 +35,24 @@ interface ArrayItem
      */
     public function getDetailText(bool $isRawHtml = false): ?string;
 
+    /**
+     * Returns DETAIL_PICTURE or PREVIEW_PICTURE if exists
+     *
+     * @return ArrayPicture|null
+     */
+    public function getPicture(): ?ArrayPicture;
+
+    /**
+     * Returns resized DETAIL_PICTURE or PREVIEW_PICTURE if exists
+     *
+     * @param  int   $width
+     * @param  int   $height
+     * @param  bool  $isProportional
+     *
+     * @return ArrayPicture|null
+     */
+    public function getResizedPicture(int $width, int $height, bool $isProportional = true): ?ArrayPicture;
+
 
     /**
      * @return ArrayPicture|null
