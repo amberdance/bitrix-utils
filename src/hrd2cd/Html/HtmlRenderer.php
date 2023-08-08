@@ -2,6 +2,7 @@
 
 namespace Hard2Code\Html;
 
+use Hard2Code\Util\Formatters;
 use Hard2Code\Util\Images;
 
 interface HtmlRenderer
@@ -40,12 +41,25 @@ interface HtmlRenderer
     ): HtmlRenderer;
 
     /**
+     * @param  string  $format
+     * @param  string  $className
+     *
+     * @return HtmlRenderer
+     */
+    public function showPostedDate(
+        string $format = Formatters::DEFAULT_DATE_FORMAT,
+        string $className = HtmlRenderer::DEFAULT_POSTED_DATE_CLASSNAME
+    ): HtmlRenderer;
+
+    /**
      * Renders posted date width div and formatted date as string like a
      * 28.02.2023
      *
      * @param  string|null  $className
      *
      * @return HtmlRenderer
+     * @deprecated 1.0.2
+     * @see        {@link HtmlRenderer::showPostedDate()}
      */
     public function showPostedDateAsDigits(?string $className = HtmlRenderer::DEFAULT_POSTED_DATE_CLASSNAME
     ): HtmlRenderer;
@@ -57,6 +71,8 @@ interface HtmlRenderer
      * @param  string|null  $className
      *
      * @return HtmlRenderer
+     * @deprecated 1.0.2
+     * @see        {@link HtmlRenderer::showPostedDate()}
      */
     public function showPostedDateAsString(
         ?string $className = HtmlRenderer::DEFAULT_POSTED_DATE_CLASSNAME

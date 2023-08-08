@@ -6,6 +6,7 @@ namespace Hard2Code\Html;
 use Hard2Code\Entity\Handler\EntityHandler;
 use Hard2Code\Entity\Item\ArrayItem;
 use Hard2Code\Util\Arrays;
+use Hard2Code\Util\Formatters;
 use Hard2Code\Util\Images;
 use Hard2Code\Util\Links;
 
@@ -144,7 +145,7 @@ final class ArrayItemHtmlRenderer implements HtmlRenderer
         ?string $className = self::DEFAULT_POSTED_DATE_CLASSNAME
     ): HtmlRenderer {
         $date = $this->parseDateTime();
-        $formattedDate = "{$date["DD"]}.{$date['MM']}.{$date['YYYY']} г.";
+        $formattedDate = "{$date["DD"]}.{$date['MM']}.{$date['YYYY']}";
 
         echo "<div class='$className'><span>$formattedDate</span><i class='far fa-calendar-alt'></i></div>";
 
@@ -221,6 +222,21 @@ final class ArrayItemHtmlRenderer implements HtmlRenderer
                 ? self::DEFAULT_IMAGE_CLASSNAME." contain"
                 : self::DEFAULT_IMAGE_CLASSNAME,
         ]);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function showPostedDate(
+        string $format = Formatters::DEFAULT_DATE_FORMAT,
+        string $className = HtmlRenderer::DEFAULT_POSTED_DATE_CLASSNAME
+    ): HtmlRenderer {
+        $date = $this->getCurrentElement()->getDate();
+
+        echo "<div class='$className'><span>".Formatters::formatDateWithBitrixFormatter(strtotime($date),
+                $format)."</span><i class='far fa-calendar-alt'></i></div>";
+
+        return $this;
     }
 
     /**

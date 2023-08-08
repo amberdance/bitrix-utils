@@ -34,6 +34,14 @@ abstract class ArrayItemBase implements ArrayElement
     /**
      * @inheritDoc
      */
+    public function getLink(): string
+    {
+        return $this->data["DETAIL_PAGE_URL"] ?? $this->data["SECTION_PAGE_URL"] ?? $this->data["LINK"] ?? $this->data["SRC"];
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function getValue(string $value): mixed
     {
         return $this->data[Strings::toUpperCase($value)];
@@ -131,4 +139,6 @@ abstract class ArrayItemBase implements ArrayElement
 
         return null;
     }
+
+
 }

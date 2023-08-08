@@ -73,7 +73,7 @@ final class Assets
 
         foreach ($paths as $path) {
             try {
-                foreach (Paths::listDirectory(self::JS_PREFIX.$path) as $js) {
+                foreach (Paths::listDirectory(SITE_TEMPLATE_PATH.self::JS_PREFIX.$path) as $js) {
                     $__js = SITE_TEMPLATE_PATH.self::JS_PREFIX.$path."/".$js;
 
                     if (is_dir($_SERVER["DOCUMENT_ROOT"].$__js)) {
@@ -101,7 +101,7 @@ final class Assets
 
         foreach ($paths as $path) {
             try {
-                foreach (Paths::listDirectory(self::CSS_PREFIX.$path) as $css) {
+                foreach (Paths::listDirectory(SITE_TEMPLATE_PATH.self::CSS_PREFIX.$path) as $css) {
                     $__css = SITE_TEMPLATE_PATH.self::CSS_PREFIX.$path."/".$css;
 
                     if (is_dir($_SERVER["DOCUMENT_ROOT"].$__css)) {
@@ -123,7 +123,7 @@ final class Assets
     {
         $asset = self::getAsset();
 
-        foreach (Paths::listDirectory(self::FONTS_PREFIX) as $font) {
+        foreach (Paths::listDirectory(SITE_TEMPLATE_PATH.self::FONTS_PREFIX) as $font) {
             $font = self::resolvePath($font, "/");
             $type = pathinfo($font)["extension"];
             $asset->addString("<link rel='preload' href='$font'  as='font' type='font/$type' crossorigin>");

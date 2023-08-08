@@ -18,12 +18,13 @@ class ArrayItemTest extends EntityTestBase
 
     public static function testGetDetailPageUrl()
     {
-        assertEquals(self::$ARRAY_ITEM->getDetailPageUrl(), self::$TEST_DATA["DETAIL_PAGE_URL"]);
+        assertEquals(self::$TEST_DATA["DETAIL_PAGE_URL"], self::$ARRAY_ITEM->getDetailPageUrl());
+        assertEquals(self::$TEST_DATA["DETAIL_PAGE_URL"], self::$ARRAY_ITEM->getLink());
     }
 
     public function testGetName()
     {
-        assertEquals(self::$ARRAY_ITEM->getName(), self::$TEST_DATA["NAME"]);
+        assertEquals(self::$TEST_DATA["NAME"], self::$ARRAY_ITEM->getName());
     }
 
     public function testGetElementCode()
@@ -35,25 +36,25 @@ class ArrayItemTest extends EntityTestBase
     public function testGetValue()
     {
         foreach (self::$TEST_DATA as $key => $value) {
-            assertEquals(self::$ARRAY_ITEM->getValue($key), self::$TEST_DATA[$key]);
+            assertEquals(self::$TEST_DATA[$key], self::$ARRAY_ITEM->getValue($key));
         }
     }
 
     public function testGetRawArrayResult()
     {
-        assertEquals(self::$ARRAY_ITEM->getRawArrayResult(), self::$TEST_DATA);
+        assertEquals(self::$TEST_DATA, self::$ARRAY_ITEM->getRawArrayResult());
     }
 
     public function testGetDetailText()
     {
-        assertEquals(self::$ARRAY_ITEM->getDetailText(), self::$TEST_DATA["DETAIL_TEXT"]);
-        assertEquals(self::$ARRAY_ITEM->getDetailText(true), self::$TEST_DATA["~DETAIL_TEXT"]);
+        assertEquals(self::$TEST_DATA["DETAIL_TEXT"], self::$ARRAY_ITEM->getDetailText());
+        assertEquals(self::$TEST_DATA["~DETAIL_TEXT"], self::$ARRAY_ITEM->getDetailText(true));
     }
 
     public function testGetPreviewText()
     {
-        assertEquals(self::$ARRAY_ITEM->getPreviewText(), self::$TEST_DATA["PREVIEW_TEXT"]);
-        assertEquals(self::$ARRAY_ITEM->getPreviewText(true), self::$TEST_DATA["~PREVIEW_TEXT"]);
+        assertEquals(self::$TEST_DATA["PREVIEW_TEXT"], self::$ARRAY_ITEM->getPreviewText());
+        assertEquals(self::$TEST_DATA["~PREVIEW_TEXT"], self::$ARRAY_ITEM->getPreviewText(true));
     }
 
 
