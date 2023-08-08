@@ -159,7 +159,7 @@ final class ArrayItemHtmlRenderer implements HtmlRenderer
         ?string $className = self::DEFAULT_PREVIEW_TEXT_CLASSNAME,
         int $truncateLength = 0
     ): HtmlRenderer {
-        echo $this->processShowPreviewText($className, $truncateLength, false);
+        echo $this->processShowPreviewText($truncateLength, false, $className,);
 
         return $this;
     }
@@ -171,7 +171,7 @@ final class ArrayItemHtmlRenderer implements HtmlRenderer
         ?string $className = self::DEFAULT_PREVIEW_TEXT_CLASSNAME,
         int $truncateLength = 0
     ): HtmlRenderer {
-        echo $this->processShowPreviewText($className, $truncateLength, true);
+        echo $this->processShowPreviewText($truncateLength, true, $className);
 
         return $this;
     }
@@ -264,8 +264,11 @@ final class ArrayItemHtmlRenderer implements HtmlRenderer
      *
      * @return string
      */
-    private function processShowPreviewText(string $className, int $truncateLength, bool $isRawHtml): string
-    {
+    private function processShowPreviewText(
+        int $truncateLength,
+        bool $isRawHtml,
+        string $className = self::DEFAULT_PREVIEW_TEXT_CLASSNAME
+    ): string {
         $element = $this->getCurrentElement();
         $previewText = $isRawHtml ? trim(strip_tags($element->getPreviewText())) : $element->getPreviewText();
 
