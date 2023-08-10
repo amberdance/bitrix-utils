@@ -20,20 +20,38 @@ interface ArrayItem
     /**
      * Returns PREVIEW_TEXT property
      *
-     * @param  bool  $isRawHtml
+     * @param  bool  $stripTags
      *
      * @return string|null
      */
-    public function getPreviewText(bool $isRawHtml = false): ?string;
+    public function getPreviewText(bool $stripTags = false): ?string;
 
     /**
      * Returns DETAIL_TEXT property
      *
-     * @param  bool  $isRawHtml
+     * @param  bool  $stripTags
      *
      * @return string|null
      */
-    public function getDetailText(bool $isRawHtml = false): ?string;
+    public function getDetailText(bool $stripTags = false): ?string;
+
+    /**
+     * Returns DETAIL_PICTURE or PREVIEW_PICTURE if exists
+     *
+     * @return ArrayPicture|null
+     */
+    public function getPicture(): ?ArrayPicture;
+
+    /**
+     * Returns resized DETAIL_PICTURE or PREVIEW_PICTURE if exists
+     *
+     * @param  int   $width
+     * @param  int   $height
+     * @param  bool  $isProportional
+     *
+     * @return ArrayPicture|null
+     */
+    public function getResizedPicture(int $width, int $height, bool $isProportional = true): ?ArrayPicture;
 
 
     /**

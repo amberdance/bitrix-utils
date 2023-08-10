@@ -42,11 +42,11 @@ class ArrayItemImpl extends ArrayItemBase implements ArrayItem
      *
      * @inheritDoc
      */
-    public function getPreviewText(bool $isRawHtml = false): ?string
+    public function getPreviewText(bool $stripTags = false): ?string
     {
         $key = "preview_text";
 
-        if ($isRawHtml) {
+        if ($stripTags) {
             $key = "~".$key;
         }
 
@@ -57,15 +57,38 @@ class ArrayItemImpl extends ArrayItemBase implements ArrayItem
      *
      * @inheritDoc
      */
-    public function getDetailText(bool $isRawHtml = false): ?string
+    public function getDetailText(bool $stripTags = false): ?string
     {
         $key = "detail_text";
 
-        if ($isRawHtml) {
+        if ($stripTags) {
             $key = "~".$key;
         }
 
         return $this->getByKey($key);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getPicture(): ?ArrayPicture
+    {
+        $image = $this->getByKey("preview_picture", "detail_picture");
+
+        if (!$image) {
+            return null;
+        }
+
+        return new ArrayPictureImpl($image);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getResizedPicture(int $width, int $height, bool $isProportional = true): ?ArrayPicture
+    {
+        return Images::getResizedImage($this->getByKey("preview_picture")["ID"] ?? $this->getByKey("detail_picture")["ID"],
+            $isProportional, $width, $height);
     }
 
     /**
@@ -160,4 +183,5 @@ class ArrayItemImpl extends ArrayItemBase implements ArrayItem
 
         return explode(",", $tags);
     }
+
 }

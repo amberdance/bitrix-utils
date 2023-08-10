@@ -159,7 +159,7 @@ final class ArrayItemHtmlRenderer implements HtmlRenderer
         ?string $className = self::DEFAULT_PREVIEW_TEXT_CLASSNAME,
         int $truncateLength = 0
     ): HtmlRenderer {
-        echo $this->processShowPreviewText($className, $truncateLength, false);
+        echo $this->processShowPreviewText($truncateLength, false, $className,);
 
         return $this;
     }
@@ -171,7 +171,7 @@ final class ArrayItemHtmlRenderer implements HtmlRenderer
         ?string $className = self::DEFAULT_PREVIEW_TEXT_CLASSNAME,
         int $truncateLength = 0
     ): HtmlRenderer {
-        echo $this->processShowPreviewText($className, $truncateLength, true);
+        echo $this->processShowPreviewText($truncateLength, true, $className);
 
         return $this;
     }
@@ -258,16 +258,21 @@ final class ArrayItemHtmlRenderer implements HtmlRenderer
     }
 
     /**
-     * @param  string  $className
-     * @param  int     $truncateLength
-     * @param  bool    $isRawHtml
+     * @param  int          $truncateLength
+     * @param  bool         $stripTags
+     *
+     * @param  string|null  $className
      *
      * @return string
      */
-    private function processShowPreviewText(string $className, int $truncateLength, bool $isRawHtml): string
-    {
+    private function processShowPreviewText(
+        int $truncateLength,
+        bool $stripTags,
+        ?string $className
+    ): string {
         $element = $this->getCurrentElement();
-        $previewText = $isRawHtml ? trim(strip_tags($element->getPreviewText())) : $element->getPreviewText();
+        $previewText = $stripTags ? trim(strip_tags($element->getPreviewText())) : $element->getPreviewText();
+        $className = $className ?? self::DEFAULT_PREVIEW_TEXT_CLASSNAME;
 
         if ($truncateLength > 0) {
             $previewText = TruncateText(HTMLToTxt($previewText), $truncateLength);
@@ -275,6 +280,5 @@ final class ArrayItemHtmlRenderer implements HtmlRenderer
 
         return "<div class='$className'>$previewText</div>";
     }
-
 
 }

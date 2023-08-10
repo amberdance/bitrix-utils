@@ -7,11 +7,11 @@ use Hard2Code\Util\Images;
 
 interface HtmlRenderer
 {
-    public const DEFAULT_WRAPPER_CLASSNAME = "image_wrapper";
+    public const DEFAULT_WRAPPER_CLASSNAME = "image-wrapper";
     public const DEFAULT_IMAGE_CLASSNAME = "image";
-    public const DEFAULT_PREVIEW_TEXT_CLASSNAME = "announcement";
+    public const DEFAULT_PREVIEW_TEXT_CLASSNAME = "preview-text";
     public const DEFAULT_LINK_CLASSNAME = "link";
-    public const DEFAULT_POSTED_DATE_CLASSNAME = "posted_date";
+    public const DEFAULT_POSTED_DATE_CLASSNAME = "posted-date";
     public const DEFAULT_TITLE_CLASSNAME = "title";
 
     /**

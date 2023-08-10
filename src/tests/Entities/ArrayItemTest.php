@@ -91,6 +91,13 @@ class ArrayItemTest extends EntityTestBase
         assertEquals(self::$TEST_DATA["PROPERTIES"], self::$ARRAY_ITEM->getIblockProperties());
     }
 
+    public function testGetPicture()
+    {
+        assertEquals(self::$TEST_DATA["DETAIL_PICTURE"]["ID"], self::$ARRAY_ITEM->getPicture()->getId());
+        assertEquals(self::$TEST_DATA["PREVIEW_PICTURE"]["ID"], self::$ARRAY_ITEM->getPreviewPicture()->getId());
+    }
+
+
     public function testGetPreviewPicture()
     {
         assertEquals(self::$TEST_DATA["PREVIEW_PICTURE"]["ID"], self::$ARRAY_ITEM->getPreviewPicture()->getId());
@@ -100,6 +107,7 @@ class ArrayItemTest extends EntityTestBase
     {
         assertEquals(self::$TEST_DATA["DETAIL_PICTURE"]["ID"], self::$ARRAY_ITEM->getDetailPicture()->getId());
     }
+
 
     public function testGetTags()
     {
