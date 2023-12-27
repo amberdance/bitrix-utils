@@ -237,9 +237,6 @@ final class Assets
 
         Assets::includeMetas([
             "viewport"    => "width=device-width,initial-scale=1",
-            "robots"      => "index, follow",
-            "keywords"    => $siteName,
-            "description" => $siteName,
         ]);
     }
 
