@@ -10,26 +10,28 @@ final class Requests
      * @param  string      $url
      * @param  array|null  $params
      * @param  array|null  $headers
+     * @param  int|null    $timeout
      *
      * @return array
      * @throws HttpException
      */
-    public static function get(string $url, ?array $params = null, ?array $headers = null): array
+    public static function get(string $url, ?array $params = null, ?array $headers = null, ?int $timeout = null): array
     {
-        return self::initCurl($url, "GET", $params, $headers);
+        return self::initCurl($url, "GET", $params, $headers, $timeout);
     }
 
     /**
      * @param  string      $url
      * @param  array|null  $params
      * @param  array|null  $headers
+     * @param  int|null    $timeout
      *
      * @return array
      * @throws HttpException
      */
-    public static function post(string $url, ?array $params = null, ?array $headers = null): array
+    public static function post(string $url, ?array $params = null, ?array $headers = null, ?int $timeout = null): array
     {
-        return self::initCurl($url, "POST", $params, $headers);
+        return self::initCurl($url, "POST", $params, $headers, $timeout);
     }
 
     /**
@@ -37,6 +39,7 @@ final class Requests
      * @param  string      $requestMethod
      * @param  array|null  $params
      * @param  array|null  $headers
+     * @param  int|null    $timeout
      *
      * @return array
      * @throws HttpException
@@ -45,7 +48,8 @@ final class Requests
         string $url,
         string $requestMethod,
         ?array $params = null,
-        ?array $headers = null
+        ?array $headers = null,
+        ?int $timeout = null,
     ): array {
         $curl = curl_init();
 
@@ -54,7 +58,7 @@ final class Requests
             CURLOPT_RETURNTRANSFER => 1,
             CURLOPT_ENCODING       => "",
             CURLOPT_MAXREDIRS      => 10,
-            CURLOPT_TIMEOUT        => 1,
+            CURLOPT_TIMEOUT        => $timeout ?? 1,
             CURLOPT_FOLLOWLOCATION => 1,
             CURLOPT_HTTP_VERSION   => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST  => $requestMethod,
@@ -75,8 +79,11 @@ final class Requests
         }
 
         $response = curl_exec($curl);
-        //TODO: make exception handling
-        $info = curl_getinfo($curl);
+
+        if ($response === false) {
+            $error = curl_error($curl);
+            throw new HttpException("cURL request failed: ".$error);
+        }
 
         curl_close($curl);
 
