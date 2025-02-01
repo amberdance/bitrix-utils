@@ -50,4 +50,19 @@ final class CiblockElementService implements CrudRepository
             throw new RepositoryException($e->getMessage());
         }
     }
+
+    /**
+     * @inheritDoc
+     * @throws RepositoryException
+     */
+    public function update(int $elementId, array $fields): bool
+    {
+        $result = $this->CIBlockElement->Update($elementId, $fields);
+
+        if (!$result) {
+            throw new RepositoryException($result->LAST_ERROR);
+        }
+
+        return $result;
+    }
 }
