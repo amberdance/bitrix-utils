@@ -14,9 +14,9 @@ final class Requests
      * @return array
      * @throws HttpException
      */
-    public static function get(string $url, ?array $params = null, ?array $headers = null): array
+    public static function get(string $url, ?array $params = null, ?array $headers = null, int $timeout = 60): array
     {
-        return self::initCurl($url, "GET", $params, $headers);
+        return self::initCurl($url, "GET", $params, $headers, $timeout);
     }
 
     /**
@@ -27,9 +27,9 @@ final class Requests
      * @return array
      * @throws HttpException
      */
-    public static function post(string $url, ?array $params = null, ?array $headers = null): array
+    public static function post(string $url, ?array $params = null, ?array $headers = null, int $timeout = 60): array
     {
-        return self::initCurl($url, "POST", $params, $headers);
+        return self::initCurl($url, "POST", $params, $headers, $timeout);
     }
 
     /**
@@ -45,7 +45,8 @@ final class Requests
         string $url,
         string $requestMethod,
         ?array $params = null,
-        ?array $headers = null
+        ?array $headers = null,
+        ?int $timeout = 60,
     ): array {
         $curl = curl_init();
 
@@ -54,7 +55,7 @@ final class Requests
             CURLOPT_RETURNTRANSFER => 1,
             CURLOPT_ENCODING       => "",
             CURLOPT_MAXREDIRS      => 10,
-            CURLOPT_TIMEOUT        => 1,
+            CURLOPT_TIMEOUT        => $timeout,
             CURLOPT_FOLLOWLOCATION => 1,
             CURLOPT_HTTP_VERSION   => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST  => $requestMethod,
@@ -75,8 +76,10 @@ final class Requests
         }
 
         $response = curl_exec($curl);
-        //TODO: make exception handling
-        $info = curl_getinfo($curl);
+
+        if ($response === false) {
+            throw new HttpException("cURL request failed: ".curl_error($curl));
+        }
 
         curl_close($curl);
 
